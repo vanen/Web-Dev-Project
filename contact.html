@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/layout_style.css">
+    <link rel="stylesheet" href="css/style_table_form.css">
+    <link rel="stylesheet" href="css/navicon.css">
+    <title>Contact Us at Vanesa's Keto Tips</title>
+    <style>
+      input:invalid, select:invalid, textarea:invalid {
+        border-color: #F00;
+        filter: drop-shadow(#e99);
+      }
+      .error {
+        border-color: #F00;
+        background-color: #e99;
+        padding: 5px;
+        width: 400px;
+      }
+    </style>
+    <script>
+      var pname, subject, email, rb, topic, question;
+
+      window.onload = function() {
+        pname = document.getElementById("pname");
+        pname.addEventListener("input", function() {
+          validateText(pname);
+        });
+
+        email = document.getElementById("email");
+        email.addEventListener("input", validateEmail);
+
+        topic = document.getElementById("topic");
+        topic.addEventListener("change", validateTopic);
+
+        subject = document.getElementById("subject");
+        subject.addEventListener("input", function() {
+          validateText(subject);
+        });
+
+
+        question = document.getElementById("question");
+        question.addEventListener("input", function() {
+          validateText(question);
+        });
+
+        rb = document.getElementsByName("type");
+        rb.forEach(function(el) {
+          el.addEventListener("click", validateMailingList)});
+
+        error = document.getElementById("error");
+
+        document.querySelector('button[type="submit"]').addEventListener("click", validateAll);
+      }
+
+      function validateAll(e) {
+        var message = "";
+        var tname = document.getElementById("pname");
+        var tsubject = document.getElementById("subject");
+        var tquestion = document.getElementById("question");
+
+        message += validateText(tname);
+        message += validateEmail(e);
+        message += validateTopic(e);
+        message += validateText(tsubject);
+        message += validateText(tquestion);
+        message += validateMailingList(e);
+
+        if (message.length > 0) {
+          message = message.replace(/\!/g, ".<br>");
+          error.innerHTML = message;
+          error.className = "error";
+        } else {
+          error.innerHTML = "";
+          error.className = "";
+        }
+      }
+
+        function validateText (e) {
+          var message = "";
+          var elem_name = e;
+
+          if (elem_name.value.length == 0) {
+            message = "You must enter a " + elem_name.name + "!";
+          }
+          else if (elem_name.validity.tooShort) {
+            message = "Your " + elem_name.name + " is too short!";
+          }
+          elem_name.setCustomValidity(message);
+          elem_name.title = message;
+          return message;
+        };
+
+        function validateEmail() {
+          var email = document.getElementById("email");
+
+          email.addEventListener("change", function(event) {
+
+            if (email.validity.valueMissing) {
+              email.setCustomValidity("You do need to provide an email!"); }
+            else if (email.validity.typeMismatch) {
+              email.setCustomValidity("This doesn't seem to be an email.");  }
+            else if (email.validity.patternMismatch) {
+              email.setCustomValidity("You may have a typo in your email!");  } 
+            else {
+              email.setCustomValidity("");
+            }
+
+            email.title = email.validationMessage;
+          });
+          return email.validationMessage;
+        };
+
+        function validateTopic(e) {
+          var message = "";
+
+          if (topic.selectedIndex == 0) {
+           message = "You must select a topic!"; 
+          }
+
+          topic.setCustomValidity(message);
+          topic.title = message;
+
+          return message;
+        };
+
+        function validateMailingList(e) {
+          var message = "";
+          var rchecked = document.querySelector("input[name='mList']:checked");
+          var rb = document.getElementsByName("mList");
+
+          if(rchecked == null) {
+            message = "You must decide whether you want to be on our mailing list!"
+          }
+            rb.forEach(function(elem) {
+              elem.title = message;
+              elem.setCustomValidity(message);
+            });
+            return message;
+        };
+    </script>
+  </head>
+  <body>
+    <div id="layout">
+    <header>
+      <h1>Vane-Keto.com</h1>
+      <h4>All things Keto for a healthy life!</h4>
+    </header>
+    <nav>
+      <a id="navicon" href="#"><img src="img/navicon.png" width="32px" /></a>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="services.html">Services</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+         <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2> Contact Us</h2>
+    </section>
+    <main>
+      <p>* indicates a required field</p>
+      <div class="error" id="error">
+      </div>
+      <form name="contactForm" id="contactForm"  action="thankyou.html" method="GET">
+        <fieldset id="contactFields">
+          <legend>Contact Information</legend>
+          <div class="formRow">
+            <label for="name">Name<span>*</span></label>
+            <input type="text" id="pname" name="name" minlength="2">
+          </div>
+          <div class="formRow">
+            <label for="email">Email Address<span>*</span></label>
+            <input type="text" id="email" name="email" pattern="^[a-zA-Z0-9.!#$%&;’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+          </div>
+          <div class="formRow">
+            <label for="phone">Phone</label>
+            <input name="phone" id="phone" type="tel" pattern="^([0-9]( |-)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-)?([0-9]{3}( |-)?[0-9]{4}|[a-zA-Z0-9]{7})$">
+          </div>
+        </fieldset>
+        <fieldset id="request">
+          <legend>Information Request</legend>
+          <div class="formRow">
+            <label>Question Topic<span>*</span></label>
+            <select id="topic" name="topic">
+              <option value="">Select a topic</option>
+              <option value="Product Information">Product Information</option>
+              <option value="Purchase Information">Purchase Information</option>
+              <option value="Returns">Returns</option>
+              <option value="Website">Website</option>
+            </select>
+          </div>
+          <div class="formRow">
+            <label>Subject<span>*</span></label>
+            <input name="subject" id="subject" minlength="5">
+          </div>
+          <label class="blockLabel" for="question">Ask us a Question<span>*</span></label>
+          <textarea name="question" id="question" rows="5" cols="55" minlength="15"></textarea>
+          <fieldset id="mailingList">
+            <legend>Do you want to be on our mailing list?</legend>
+            <label for="mYes">Yes</label>
+            <input type="radio" id="mYes" name="mList" value="yes">
+            <label for="mNo">No</label>
+            <input type="radio" id="mNo" name="mList"  value="no">
+          </fieldset>
+          <button type="submit" id="sub">Submit Question</button>
+          <button type="reset">Cancel</button>
+        </fieldset>
+      </form>
+    </main>
+    <footer>Copyright 2019 by Vanesa Nasi</footer>
+  </div>
+</body>
+</html>

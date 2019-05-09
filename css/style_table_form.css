@@ -1,0 +1,59 @@
+.gridArea {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.gridArea article img {
+ display: block;
+ margin: auto;
+}
+.gridArea article table {
+ margin: auto;
+ background-size: 120px 120px;
+}
+.gridArea article tfoot td {
+ text-align: center;
+ background-size: 120px 120px;
+}
+.gridArea article caption {
+ font-weight: bold;
+}
+.gridArea article {
+ border-radius: 5px;
+ background-color: rgb(255,255,255);
+ box-shadow: 5px 5px 10px;
+}
+
+/* The following styles are for the contact form */
+fieldset {
+ background-color: rgb(166, 171, 196);
+ border-color: rgb(97, 113, 141);
+ padding: 5px;
+ margin-bottom: 10px;
+}
+fieldset span {
+ color: red;
+}
+.formRow {
+ display: flex;
+ flex-flow: row wrap;
+ margin: 7px;
+}
+#name, #email, #subject, #topic {
+ width: 250px;
+}
+div.formRow>input#phone {
+ width: 150px;
+}
+#question {
+ width: 95%;
+ max-width: 450px;
+ padding: 5px;
+ margin-top: 10px;
+}
+div.formRow>label {
+  width: 150px;
+}
+.blockLabel {
+ display: block;
+}

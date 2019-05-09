@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+      <link rel="stylesheet" href="css/base.css">
+      <link rel="stylesheet" href="css/style1.css">
+      <link rel="stylesheet" href="css/layout_style.css">
+      <link rel="stylesheet" href="css/style_table_form.css">
+      <link rel="stylesheet" href="css/navicon.css">
+      <title>Thank You</title>
+      <script>
+      window.onload = function() {
+
+        var url = new URL(window.location.href);
+        
+        var pname = url.searchParams.get("name");
+        var subject = url.searchParams.get("subject");
+        var email = url.searchParams.get("email");
+
+        document.getElementById("subject").innerHTML = subject; 
+        document.getElementById("email").innerHTML = email;
+        document.getElementById("name").innerHTML = pname;
+      
+        if (pname.length == 0) {
+          window.location.href = "contact.html";
+        };
+      }
+      </script>
+  </head>
+  <body>
+    <div id="layout">
+    <header>
+      <h1>Vane-Keto.com</h1>
+      <h4>All things Keto for a healthy life!</h4>
+    </header>
+    <nav>
+      <a id="navicon" href="#"><img src="img/navicon.png" width="32px" /></a>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="services.html">Services</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+         <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2>Thank You</h2>
+    </section>
+    <main>
+      <p id="name"></p>
+      <p>We have received your request for additional information on:</p>
+      <ul><li id="subject"></li></ul>
+      <p>We will respond to <span id="email"></span> within two business days.</p>
+      <p>Thank you for your interest!</p>  
+    </main>
+    <footer>Copyright 2019 by Vanesa Nasi</footer>
+  </div>
+  </body>
+</html>
+
+
+
+

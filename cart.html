@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/layout_style.css">
+    <link rel="stylesheet" href="css/style_table_form.css">
+    <link rel="stylesheet" href="css/navicon.css">
+    <style>
+    div#cart {
+      font-size: 1.4em;
+      border-collapse: collapse;
+      line-height: 1.3em;
+    }
+    tr:nth-of-type(even) {
+      background: rgb(166, 171, 196);
+    }
+    div#cart table tr td:nth-of-type(2), div#cart table tr td:nth-of-type(3), div#cart table tr td:nth-of-type(4) {
+      text-align: right;
+    }
+    div#cart table th { 
+      background-color:  rgb(97, 113, 141);
+      color: rgb(231, 231, 231);
+      padding: 10px;
+    }
+    div#cart table td { 
+      padding: 5px;
+    }
+    /* CSS selector below renders in IE but not Chrome */
+    div#cart table tfoot tr:first-of-type {
+      border-top: 6px double  rgb(10, 17, 31);
+    } 
+    div#cart table tfoot tr td {
+      background-color: rgb(220,220,220);
+      text-align:right;
+    }
+    </style>
+    <script src="arrays.js" defer></script>
+    <script src="cart.js" defer></script>
+    <title>Vanesa's Keto Tips</title>
+  </head>
+  <body>
+    <div id="layout">
+    <header>
+      <h1>Vane-Keto.com</h1>
+      <h4>All things Keto for a healthy life!</h4>
+    </header>
+    <nav>
+      <a id="navicon" href="#"><img src="img/navicon.png" width="32px"/></a>
+      <ul>
+         <li><a href="index.html">Home</a></li>
+         <li><a href="services.html">Services</a></li>
+         <li><a href="about.html">About Us</a></li>
+         <li><a href="contact.html">Contact Us</a></li>
+         <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h2>All the tools you need to begin a healthy keto lifestyle</h2>
+    </section>
+    <main>
+      <h3>Shopping Cart</h3>
+      <div id="cart">
+      </div>
+      <button type="button">Proceed to Checkout</button>
+      <p id="sdate"></p>
+    </main>
+    <footer>Copyright 2019 by Vanesa Nasi</footer>
+    </div>
+  </body>
+</html>
